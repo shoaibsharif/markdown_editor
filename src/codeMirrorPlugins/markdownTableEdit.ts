@@ -8,7 +8,7 @@ import {
 import { TextEditorInterface } from "./TextEditorInterface";
 import CodeMirror from "codemirror";
 
-export class Editor {
+export class MTableEditor {
   private readonly cm: CodeMirror.Editor;
   originalTableHelpers: any;
   tableEditor: any;
@@ -160,102 +160,3 @@ export class Editor {
     });
   }
 }
-
-// CodeMirror.commands = {
-//   ...CodeMirror.commands,
-//   tableFormatAll: (cm: CodeMirror.Editor) => {
-//     const tableEditor = new Editor(cm);
-//     tableEditor.formatAll();
-//   },
-
-//   tableFormat: (cm: CodeMirror.Editor) => {
-//     const tableEditor = new Editor(cm);
-//     tableEditor.format();
-//   },
-//   tableEscape: (cm: CodeMirror.Editor) => {
-//     const tableEditor = new Editor(cm);
-//     tableEditor.escape();
-//   },
-//   tableAlignLeft: (cm: CodeMirror.Editor) => {
-//     const tableEditor = new Editor(cm);
-//     tableEditor.align(Alignment.LEFT);
-//   },
-//   tableAlignRight: (cm: CodeMirror.Editor) => {
-//     const tableEditor = new Editor(cm);
-//     tableEditor.align(Alignment.RIGHT);
-//   },
-//   tableAlignCenter: (cm: CodeMirror.Editor) => {
-//     const tableEditor = new Editor(cm);
-//     tableEditor.align(Alignment.CENTER);
-//   },
-//   tableAlignNone: (cm: CodeMirror.Editor) => {
-//     const tableEditor = new Editor(cm);
-//     tableEditor.align(Alignment.NONE);
-//   },
-//   tableSelectCell: (cm: CodeMirror.Editor) => {
-//     const tableEditor = new Editor(cm);
-//     tableEditor.selectCell();
-//   },
-//   tableMoveLeft: (cm: CodeMirror.Editor) => {
-//     const tableEditor = new Editor(cm);
-//     tableEditor.moveFocus(0, -1);
-//   },
-//   tableMoveRight: (cm: CodeMirror.Editor) => {
-//     const tableEditor = new Editor(cm);
-//     tableEditor.moveFocus(0, 1);
-//   },
-//   tableMoveUp: (cm: CodeMirror.Editor) => {
-//     const tableEditor = new Editor(cm);
-//     tableEditor.moveFocus(-1, 0);
-//   },
-
-//   tableMoveDown: (cm: CodeMirror.Editor) => {
-//     const tableEditor = new Editor(cm);
-//     tableEditor.moveFocus(1, 0);
-//   },
-//   tableNextCell: (cm: CodeMirror.Editor) => {
-//     const tableEditor = new Editor(cm);
-//     tableEditor.nextCell();
-//   },
-//   tablePreviousCell: (cm: CodeMirror.Editor) => {
-//     const tableEditor = new Editor(cm);
-//     tableEditor.previousCell();
-//   },
-//   tableNextRow: (cm: CodeMirror.Editor) => {
-//     const tableEditor = new Editor(cm);
-//     tableEditor.nextRow();
-//   },
-//   tableInsertRow: (cm: CodeMirror.Editor) => {
-//     const tableEditor = new Editor(cm);
-//     tableEditor.insertRow();
-//   },
-//   tableDeleteRow: (cm: CodeMirror.Editor) => {
-//     const tableEditor = new Editor(cm);
-//     tableEditor.deleteRow();
-//   },
-//   tableMoveRowUp: (cm: CodeMirror.Editor) => {
-//     const tableEditor = new Editor(cm);
-//     tableEditor.moveRow(-1);
-//   },
-//   tableMoveRowDown: (cm: CodeMirror.Editor) => {
-//     const tableEditor = new Editor(cm);
-//     tableEditor.moveRow(1);
-//   },
-//   tableInsertColumn: (cm: CodeMirror.Editor) => {
-//     const tableEditor = new Editor(cm);
-//     tableEditor.insertColumn();
-//   },
-//   tableDeleteColumn: (cm: CodeMirror.Editor) => {
-//     const tableEditor = new Editor(cm);
-//     tableEditor.deleteColumn();
-//   },
-
-//   tableMoveColumnLeft: (cm: CodeMirror.Editor) => {
-//     const tableEditor = new Editor(cm);
-//     tableEditor.moveColumn(-1);
-//   },
-//   tableMoveColumnRight: (cm: CodeMirror.Editor) => {
-//     const tableEditor = new Editor(cm);
-//     tableEditor.moveColumn(1);
-//   },
-// };

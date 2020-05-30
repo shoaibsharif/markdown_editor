@@ -13,16 +13,18 @@ import "codemirror/mode/shell/shell";
 import "codemirror/addon/edit/continuelist";
 import "codemirror/addon/dialog/dialog";
 import "./intentlist";
-import { Editor } from "./markdownTableEdit";
+import { MTableEditor } from "./codeMirrorPlugins/markdownTableEdit";
 import "codemirror/addon/edit/closebrackets";
 import "codemirror/lib/codemirror";
 import "codemirror/mode/htmlmixed/htmlmixed";
 import { Controlled as CodeMirror } from "react-codemirror2";
 import { Markdown } from "./Markdown";
+import raw from "raw.macro";
+
+const contents = raw("./sample.md");
+
 function App() {
-  const [value, setValue] = useState(
-    "```shell\n$ sudo su\n$ apt-get upgrade\n```\n\n* I am trying \n  * dfdf \n\n`code`\n\n# dfd fd"
-  );
+  const [value, setValue] = useState(contents);
   const handleDrop = (editor, event: DragEvent) => {
     if (!event.dataTransfer) return;
 
@@ -75,7 +77,7 @@ function App() {
           lineWrapping: true,
         }}
         editorDidMount={(editor: CodeMirror.Editor) => {
-          new Editor(editor);
+          new MTableEditor(editor);
         }}
         onBeforeChange={(editor, data, value) => setValue(value)}
         onDrop={handleDrop}
