@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/core": "^10.0.28",
     "@mapbox/rehype-prism": "^0.4.0",
+    "@susisu/mte-kernel": "^2.1.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -13,6 +14,7 @@
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
     "codemirror": "^5.54.0",
+    "event-kit": "^2.5.3",
     "hast-util-to-string": "^1.0.3",
     "highlight.js": "^10.0.3",
     "lowlight": "^1.13.1",
@@ -62,5 +64,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/codemirror": "0.0.95"
   }
 }

@@ -12,17 +12,18 @@ import "codemirror/mode/markdown/markdown";
 import "codemirror/mode/shell/shell";
 import "codemirror/addon/edit/continuelist";
 import "codemirror/addon/dialog/dialog";
-import "./intentlist.js";
+import "./intentlist";
+import { Editor } from "./markdownTableEdit";
 import "codemirror/addon/edit/closebrackets";
 import "codemirror/lib/codemirror";
 import "codemirror/mode/htmlmixed/htmlmixed";
-import { Controlled as CodeMirror, ICodeMirror } from "react-codemirror2";
+import { Controlled as CodeMirror } from "react-codemirror2";
 import { Markdown } from "./Markdown";
 function App() {
   const [value, setValue] = useState(
     "```shell\n$ sudo su\n$ apt-get upgrade\n```\n\n* I am trying \n  * dfdf \n\n`code`\n\n# dfd fd"
   );
-  const handleDrop = (editor: ICodeMirror, event: DragEvent) => {
+  const handleDrop = (editor, event: DragEvent) => {
     if (!event.dataTransfer) return;
 
     const files = event.dataTransfer.files;
@@ -33,7 +34,7 @@ function App() {
     }
   };
 
-  const handlePaste = (editor: ICodeMirror, event: ClipboardEvent) => {
+  const handlePaste = (editor: CodeMirror.Editor, event: ClipboardEvent) => {
     console.log(event);
     if (event?.clipboardData?.files.length) {
       event.preventDefault();
@@ -57,18 +58,24 @@ function App() {
         options={{
           mode: "gfm",
           theme: "solarized light",
-          fencedCodeBlockHighlighting: true,
           indentUnit: 2,
           indentWithTabs: false,
           autoCloseBrackets: true,
-          highlightFormatting: true,
-          fencedCodeBlockDefaultMode: true,
           extraKeys: {
-            Enter: "newlineAndIndentContinueMarkdownList",
-            Tab: "autoIndentMarkdownList",
-            "Shift-Tab": "autoUnindentMarkdownList",
+            Enter: (editor: CodeMirror.Editor) => {
+              editor.execCommand("newlineAndIndentContinueMarkdownList");
+            },
+            Tab: (editor: CodeMirror.Editor) => {
+              editor.execCommand("autoIndentMarkdownList");
+            },
+            "Shift-Tab": (editor: CodeMirror.Editor) => {
+              editor.execCommand("autoUnindentMarkdownList");
+            },
           },
           lineWrapping: true,
+        }}
+        editorDidMount={(editor: CodeMirror.Editor) => {
+          new Editor(editor);
         }}
         onBeforeChange={(editor, data, value) => setValue(value)}
         onDrop={handleDrop}

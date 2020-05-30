@@ -1,16 +1,15 @@
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
 // Distributed under an MIT license: http://codemirror.net/LICENSE
-import CodeMirror from "codemirror";
+import CodeMirror, { Editor } from "codemirror";
 
 var Pos = CodeMirror.Pos;
 var listTokenRE = /^(\s*)(>[> ]*|[*+-] \[[x ]\]|[*+-]|(\d+)[.)])(\s*)$/;
 
-function matchListToken(pos, cm) {
+function matchListToken(pos: CodeMirror.Position, cm: Editor) {
   /* Get some info about the current state */
   let eolState = cm.getStateAfter(pos.line);
   let inList = eolState.list !== false;
   let inQuote = eolState.quote !== 0;
-
   /* Get the line from the start to where the cursor currently is */
   let lineStart = cm.getRange(Pos(pos.line, 0), pos);
 
@@ -23,7 +22,8 @@ function matchListToken(pos, cm) {
   else return true;
 }
 
-CodeMirror.commands.autoIndentMarkdownList = function (cm) {
+CodeMirror.commands.autoIndentMarkdownList = function (cm: Editor) {
+  // @ts-ignore
   if (cm.getOption("disableInput")) return CodeMirror.Pass;
   var ranges = cm.listSelections();
   for (var i = 0; i < ranges.length; i++) {
@@ -41,6 +41,7 @@ CodeMirror.commands.autoIndentMarkdownList = function (cm) {
 };
 
 CodeMirror.commands.autoUnindentMarkdownList = function (cm) {
+  // @ts-ignore
   if (cm.getOption("disableInput")) return CodeMirror.Pass;
   var ranges = cm.listSelections();
   for (var i = 0; i < ranges.length; i++) {
