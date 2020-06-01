@@ -143,9 +143,10 @@ export class MTableEditor {
         this.tableEditor.moveRow(1, this.getOptions());
       },
     });
+    const multipleCursor = this.cm.listSelections().length > 1;
     const isInTable = this.tableEditor.cursorIsInTable(this.getOptions());
 
-    if (isInTable) {
+    if (isInTable && !multipleCursor) {
       this.cm.setOption("extraKeys", keyMap);
     } else {
       this.cm.setOption("extraKeys", null);
