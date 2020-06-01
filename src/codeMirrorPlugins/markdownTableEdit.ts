@@ -11,9 +11,9 @@ import CodeMirror from "codemirror";
 export class MTableEditor {
   private readonly cm: CodeMirror.Editor;
   originalTableHelpers: any;
-  tableEditor: any;
-  cursorActivityListener: () => void;
-  editorinf: TextEditorInterface;
+  private readonly tableEditor: any;
+  private cursorActivityListener: () => void;
+  private readonly editorinf: TextEditorInterface;
   constructor(cm: CodeMirror.Editor) {
     this.cm = cm;
     this.editorinf = new TextEditorInterface(this.cm);
@@ -149,7 +149,7 @@ export class MTableEditor {
     if (isInTable && !multipleCursor) {
       this.cm.setOption("extraKeys", keyMap);
     } else {
-      this.cm.setOption("extraKeys", null);
+      this.cm.setOption("extraKeys", this.cm.getOption('extraKeys'));
       this.tableEditor.resetSmartCursor();
     }
   }
