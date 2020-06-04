@@ -75,6 +75,7 @@ function App() {
             },
           },
           lineWrapping: true,
+          addModeClass: true,
         }}
         editorDidMount={(editor: CodeMirror.Editor) => {
           new MTableEditor(editor);
